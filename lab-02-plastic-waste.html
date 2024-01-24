@@ -303,7 +303,9 @@ There is no way to tell what value will work best, so you just need to try a few
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>                     <span class="at">color =</span> continent, </span>
 <span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>                     <span class="at">fill =</span> continent)) <span class="sc">+</span></span>
 <span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div></li>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Plastic waste per capita&quot;</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&quot;Continent&quot;</span>)</span></code></pre></div></li>
 <li><p>Describe why we defined the <code>color</code> and <code>fill</code> of the curves by mapping aesthetics of the plot but we defined the <code>alpha</code> level as a characteristic of the plotting geom.</p>
 <ul>
 <li><em>The <code>color</code> and <code>fill</code> are defined in the mapping aesthetics because they vary for the different continents’ curves, while the alpha value is the same, hard-coded value for all of the curves, and therefore is defined in the geom_**() function itself.</em></li>
@@ -315,7 +317,10 @@ There is no way to tell what value will work best, so you just need to try a few
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> continent, </span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>                     <span class="at">y =</span> plastic_waste_per_cap)) <span class="sc">+</span></span>
 <span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Plastic waste per capita&quot;</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Continent&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <ul>
 <li><em>Once again, in order to make the data visible, I’ve limited the y values to those between 0 and 1, since otherwise the data would be hard to read on the bottom of the chart.</em></li>
 </ul>
@@ -326,7 +331,10 @@ There is no way to tell what value will work best, so you just need to try a few
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> continent, </span>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>                     <span class="at">y =</span> plastic_waste_per_cap)) <span class="sc">+</span></span>
 <span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Plastic waste per capita&quot;</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Continent&quot;</span>) <span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <ul>
 <li><em>In the violin plot, we can see the distribution of the values within the data range better than the general distribution we see in the pox plot. However, in the box plots, we can see the median clearly, along with the other quartiles, three numbers which can only be approximated using the violin plots. In addition to this, it can be hard to tell the number and positions of outliers from the violin plot, while this can be seen easily in the box plot.</em></li>
 </ul>
@@ -338,8 +346,10 @@ Describe the relationship.</li>
 </ol>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">ggplot</span>(plastic_waste, <span class="fu">aes</span>(<span class="at">x =</span> plastic_waste_per_cap, </span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>                          <span class="at">y =</span> mismanaged_plastic_waste_per_cap)) <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="co"># +</span></span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="co">#xlim(0, 1)</span></span></code></pre></div>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Plastic waste per capita&quot;</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mismanaged plastic waste per capita&quot;</span>)<span class="co"># +</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>  <span class="co">#xlim(0, 1)</span></span></code></pre></div>
 <ul>
 <li><em>Both with and without the commented <code>xlim()</code> function, we can see that there is a positive correlation between the two variables. From the zoomed-in area, it seems to follow the rule <code>y &lt;= 0.8x</code>. However, there are many countries clumped together at the bottom of the chart, so this correlation may just be due to the fact that mismanaged plastic waste per capita must be both higher than zero and less than the total plastic waste per capita.</em></li>
 </ul>
@@ -351,7 +361,10 @@ Does there seem to be any clear distinctions between continents with respect to 
 <span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>                          <span class="at">y =</span> mismanaged_plastic_waste_per_cap,</span>
 <span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>                          <span class="at">colour =</span> continent)) <span class="sc">+</span></span>
 <span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Plastic waste per capita&quot;</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mismanaged plastic waste per capita&quot;</span>, </span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&quot;Continent&quot;</span>)</span></code></pre></div>
 <ul>
 <li><em>for this plot, I have uncommented the limit function, so that we can see the rest of the data more clearly. Some visual coordinations do seem to stick out: African countries are generally on the higher side of this graph, with most of their pollution being mismanaged. European countries are generally on the lower side of this graph, except for when plastic waste per capita is below 0.25, when they’re roughly evenly distributed. North America is generally somewhere in the middle, and South American countries are in the lower side of the graph, except for one which is significantly higher up and further to the right than the others. Asian countries, meanwhile, have no discernable trend, being spread across the entire chart.</em></li>
 </ul>
@@ -364,13 +377,17 @@ Do either of these pairs of variables appear to be more strongly linearly associ
 <span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>                          <span class="at">y =</span> total_pop)) <span class="sc">+</span></span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">2e+08</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="fu">ggplot</span>(plastic_waste, <span class="fu">aes</span>(<span class="at">x =</span> plastic_waste_per_cap, </span>
-<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>                          <span class="at">y =</span> coastal_pop)) <span class="sc">+</span></span>
-<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">2e+07</span>)</span></code></pre></div>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">2e+08</span>) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Plastic waste per capita&quot;</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Total population&quot;</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="fu">ggplot</span>(plastic_waste, <span class="fu">aes</span>(<span class="at">x =</span> plastic_waste_per_cap, </span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>                          <span class="at">y =</span> coastal_pop)) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">2e+07</span>) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Plastic waste per capita&quot;</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Coastal population&quot;</span>)</span></code></pre></div>
 <ul>
 <li><em>Neither of these appear to be strongly linear correlations; however, if I had to say which one was closer to a linear correlation, it would be the second chart, since the first one seems more exponential than linear; at the same time, the second one seems to be more random. Ultimately, I don’t think a visual analysis is working very well for this question, since neither have an especially linear trend, no matter how I limit the y values. At least, they don’t seem more associated to the amount of plastic waste than the other is.</em></li>
 </ul>

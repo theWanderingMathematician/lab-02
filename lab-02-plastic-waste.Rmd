@@ -179,7 +179,9 @@ This still doesn't look great...
                          color = continent, 
                          fill = continent)) +
       geom_density(alpha = 0.2) +
-      xlim(0, 1)
+      xlim(0, 1) +
+      labs(x = "Plastic waste per capita",
+           colour = "Continent")
     ```
 
 2.  Describe why we defined the `color` and `fill` of the curves by mapping aesthetics of the plot but we defined the `alpha` level as a characteristic of the plotting geom.
@@ -195,7 +197,10 @@ ggplot(data = plastic_waste,
        mapping = aes(x = continent, 
                      y = plastic_waste_per_cap)) +
   geom_boxplot() +
-  ylim(0, 1)
+  ylim(0, 1) +
+  labs(y = "Plastic waste per capita",
+       x = "Continent") +
+  coord_flip()
 ```
 
 -   *Once again, in order to make the data visible, I've limited the y values to those between 0 and 1, since otherwise the data would be hard to read on the bottom of the chart.*
@@ -207,7 +212,10 @@ ggplot(plastic_waste,
        aes(x = continent, 
                      y = plastic_waste_per_cap)) +
   geom_violin() +
-  ylim(0, 1)
+  ylim(0, 1) +
+  labs(y = "Plastic waste per capita",
+       x = "Continent") +
+  coord_flip()
 ```
 
 -   *In the violin plot, we can see the distribution of the values within the data range better than the general distribution we see in the pox plot. However, in the box plots, we can see the median clearly, along with the other quartiles, three numbers which can only be approximated using the violin plots. In addition to this, it can be hard to tell the number and positions of outliers from the violin plot, while this can be seen easily in the box plot.*
@@ -222,7 +230,9 @@ ggplot(plastic_waste,
 ``` {r}
 ggplot(plastic_waste, aes(x = plastic_waste_per_cap, 
                           y = mismanaged_plastic_waste_per_cap)) +
-  geom_point()# +
+  geom_point() +
+  labs(x = "Plastic waste per capita",
+       y = "Mismanaged plastic waste per capita")# +
   #xlim(0, 1)
 ```
 
@@ -236,7 +246,10 @@ ggplot(plastic_waste, aes(x = plastic_waste_per_cap,
                           y = mismanaged_plastic_waste_per_cap,
                           colour = continent)) +
   geom_point() +
-  xlim(0, 1)
+  xlim(0, 1) +
+  labs(x = "Plastic waste per capita",
+       y = "Mismanaged plastic waste per capita", 
+       colour = "Continent")
 
 ```
 
@@ -251,13 +264,17 @@ ggplot(plastic_waste, aes(x = plastic_waste_per_cap,
                           y = total_pop)) +
   geom_point() +
   xlim(0, 1) +
-  ylim(0, 2e+08)
+  ylim(0, 2e+08) +
+  labs(x = "Plastic waste per capita",
+       y = "Total population")
 
 ggplot(plastic_waste, aes(x = plastic_waste_per_cap, 
                           y = coastal_pop)) +
   geom_point() +
   xlim(0, 1) +
-  ylim(0, 2e+07)
+  ylim(0, 2e+07) +
+  labs(x = "Plastic waste per capita",
+       y = "Coastal population")
 ```
 
 - *Neither of these appear to be strongly linear correlations; however, if I had to say which one was closer to a linear correlation, it would be the second chart, since the first one seems more exponential than linear; at the same time, the second one seems to be more random. Ultimately, I don't think a visual analysis is working very well for this question, since neither have an especially linear trend, no matter how I limit the y values. At least, they don't seem more associated to the amount of plastic waste than the other is.*
