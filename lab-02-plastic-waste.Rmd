@@ -1,11 +1,15 @@
 ---
 title: "Lab 02 - Global plastic waste"
+author: "Micaiah Balonek"
 output: 
   tufte::tufte_html:
     tufte_variant: "envisioned"
     highlight: pygments
     css: ../lab.css
 link-citations: true
+editor_options: 
+  markdown: 
+    wrap: sentence
 ---
 
 ```{r include = FALSE}
@@ -75,13 +79,22 @@ The variable descriptions are as follows:
 # Warm up
 
 -   Recall that RStudio is divided into four panes. Without looking, can you name them all and briefly describe their purpose?
+    -   *The console, where code runs that loads in packages and which code from affects the entire project,*
+
+    -   *The viewer frame, where you can view packages, documentation screens, files, and the directory of files,*
+
+    -   *The environment, which monitors history and data, and manages git commands,*
+
+    -   *And the source code, where you can edit the files and programs themselves.*
 -   Verify that the dataset has loaded into the Environment. How many observations are in the dataset? Clicking on the dataset in the Environment will allow you to inspect it more carefully. Alternatively, you can type `View(plastic_waste)` into the Console to do this.
+    -   *There are 240 observations in the `plastic_waste` dataset.*
 
 ```{marginfigure}
 **Hint:** If you're not sure, run the command `?NA` which will lead you to the documentation.
 ```
 
 -   Have a quick look at the data and notice that there are cells taking the value `NA` -- what does this mean?
+    -   *Those cells have no values or types in them, and therefore render as `NA` instead of as an empty cell.*
 
 # Exercises
 
@@ -107,6 +120,12 @@ You might consider doing some research on Trinidad and Tobago to see why plastic
 
 ```{marginfigure}
 **NOTE:** From this point onwards the plots and the output of the code are not displayed in the lab instructions, but you can and should the code and view the results yourself.
+```
+
+```{r}
+ggplot(plastic_waste, aes(x = plastic_waste_per_cap)) +
+  geom_histogram(binwidth = 0.2) +
+  facet_wrap(~ continent, ncol=2) 
 ```
 
 Another way of visualizing numerical data is using density plots.
@@ -152,7 +171,21 @@ This still doesn't look great...
 
 1.  Recreate the density plots above using a different (lower) alpha level that works better for displaying the density curves for all continents.
 
+    - *I have also limited the x-values of the data to those between 0 and 1 so that we can see the data more clearly, since we already know that Trinidad and Tobago is much higher than the rest, and the empty space between it and the rest is a waste of space on the graph, while this makes the bulk of the data more clearly visible, with only the one data point missing.*
+``` {r}
+ggplot(plastic_waste, 
+       aes(x = plastic_waste_per_cap, 
+                     color = continent, 
+                     fill = continent)) +
+  geom_density(alpha = 0.2) +
+  xlim(0, 1)
+```
+
+
+
 2.  Describe why we defined the `color` and `fill` of the curves by mapping aesthetics of the plot but we defined the `alpha` level as a characteristic of the plotting geom.
+
+    -   *The `color` and `fill` are defined in the mapping aesthetics because they vary for the different continents' curves, while the alpha value is the same, hard-coded value for all of the curves, and therefore is defined in the geom\_\*\*() function itself.*
 
 🧶 ✅ ⬆️ *Now is a good time to knit your document and commit and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
@@ -215,4 +248,4 @@ plastic_waste %>%
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
 
-Once you're done, submit a PDF copy of the lab to moodle. 
+Once you're done, submit a PDF copy of the lab to moodle.
